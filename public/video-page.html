@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Title</title>
+    <style></style>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="flex flex-col w-screen h-screen bg-gray-100 overflow-x-hidden">
+    <header class="w-screen justify-between bg-white">
+      <a
+        class="
+          flex
+          items-center
+          m-4
+          cursor-pointer
+          hover:opacity-70
+          transition
+          duration-75
+          ease-in
+        "
+        href="#"
+      >
+        <img
+          src="images/logo-iconlogo.svg"
+          alt="logo"
+          class="w-12 h-12 items-center"
+        />
+        <p class="font-bold font-sans text-3xl ml-3">Education</p>
+      </a>
+    </header>
+    <main class="flex flex-col w-screen h-screen bg-gray-100 items-center">
+      <div class="w-screen flex flex-row justify-end px-4 mt-4">
+        <input
+          type="text"
+          name="search"
+          id="search-bar"
+          placeholder="Search"
+          class="
+            bg-transparent
+            border-b-2
+            transform
+            translate-x-12
+            h-10
+            placeholder-gray-600
+            mr-4
+            p-3
+            w-0
+            transition
+            duration-200
+            ease-in
+            focus:outline-none
+          "
+        />
+        <button id="search-btn" class="transition duration-300 ease-in z-10">
+          <img src="images/search-icon.svg" />
+        </button>
+      </div>
+      <div class="flex justify-center h-full w-3/5">
+        <div class="flex flex-col h-auto w-full">
+          <div class="flex justify-center">
+            <iframe
+              src="https://www.youtube.com/embed/BCg4U1FzODs"
+              width="924"
+              height="520"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="rounded mt-4 flex justify-center w-full"
+            ></iframe>
+          </div>
+
+          <div class="mt-5 flex flex-col">
+            <p class="capitalize flex font-medium text-2xl">
+              TypeScript Crash Course 2021
+            </p>
+            <div class="flex flex-row justify-between font-normal py-2">
+              <div class="flex">
+                <p class="font-normal" id="view-count">Current Views</p>
+                <p class="mx-3">&bull;</p>
+                <p class="font-normal" id="publish-date">Publish Date</p>
+              </div>
+              <div class="flex pb-3">
+                <a href="" class="flex">
+                  <img src="images/like-icon.svg" alt="likes" />
+                  <p class="mx-2" id="like-count">80K</p>
+                </a>
+                <a href="" class="flex">
+                  <img src="images/dislike-icon.svg" alt="likes" />
+                  <p class="mx-2 ml-2" id="dislike-count">120</p>
+                </a>
+
+                <a class="flex mx-1">
+                  <img
+                    src="images/watch-later-icon.svg"
+                    alt="watch later"
+                    class="mx-1"
+                  />
+                  Watch Later
+                </a>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mt-1 flex flex-col px-1 py-2 h-screen">
+              <div class="flex justify-center mt-2 select-none">
+                <div class="cursor-pointer w-auto rounded-lg">
+                  <a
+                    id="description"
+                    class="
+                      bg-red-500
+                      text-white
+                      p-2
+                      rounded-l-lg
+                      border-2 border-red-500
+                      transform
+                      translate-
+                    "
+                  >
+                    Description
+                  </a>
+                  <a
+                    id="notes"
+                    class="
+                      bg-white
+                      p-2
+                      rounded-r-lg
+                      border-t-2 border-r-2 border-b-2 border-red-500
+                    "
+                  >
+                    Notes
+                  </a>
+                </div>
+              </div>
+              <div class="mt-5">
+                <div class="flex w-full h-auto" id="">
+                  <div class="w-3/4 flex-col">
+                    <!-- do not add any other ids to the div given below -->
+                    <div class="h-20" id="video-description-readmore">
+                      <p id="video-description" class="text-justify">
+                        hello how are you <br />
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        A quidem laudantium dignissimos molestiae adipisci.
+                        Facilis dicta, dolores ducimus eaque totam, temporibus
+                        maxime accusantium suscipit adipisci magni placeat
+                        corrupti tenetur fugit. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Ea inventore incidunt,
+                        accusantium quidem odit modi necessitatibus rerum
+                        laborum omnis delectus, voluptate voluptatibus
+                        consectetur debitis officia reprehenderit adipisci
+                        consequuntur quasi alias. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. Pariatur consequatur
+                        accusamus, doloremque delectus molestiae a dolore rerum
+                        omnis placeat alias! Ea sed tempora dicta nisi
+                        accusantium porro aut eveniet laboriosam esse et modi in
+                        magni eum quaerat saepe commodi quas enim, eius
+                        doloremque. Nesciunt ducimus maxime adipisci autem
+                        tempora nobis laudantium quos distinctio libero fuga?
+                        Laborum, repellendus perspiciatis aliquam quaerat
+                        dignissimos architecto earum fugiat, praesentium minus
+                        ipsam porro, repudiandae saepe?
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="
+                        font-medium
+                        text-gray-500
+                        p-1
+                        -ml-3
+                        rounded-xl
+                        w-28
+                      "
+                      id="readMore"
+                      value="Read More"
+                    >
+                      Read More
+                    </button>
+                  </div>
+
+                  <div
+                    class="w-1/4 px-6 py-2 h-full"
+                    id="video-description-google"
+                  >
+                    <script src="https://apis.google.com/js/platform.js"></script>
+
+                    <div
+                      class="g-ytsubscribe"
+                      data-channel="GoogleDevelopers"
+                      data-layout="full"
+                      data-count="default"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="hidden" id="video-notes">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque
+                enim ratione facilis tempore aliquid quas error assumenda est ad
+                sed?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
