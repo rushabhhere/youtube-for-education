@@ -8,8 +8,16 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      'sans': ['Roboto'],
-      'mono': ['Roboto Mono'],
+      sans: ['Roboto'],
+      mono: ['Roboto Mono'],
+    },
+    screens: {
+      sm: '500px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      hoverable: { raw: '(hover: hover)' },
     },
   },
   variants: {

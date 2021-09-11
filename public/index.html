@@ -21,25 +21,13 @@
   <body class="bg-gray-200 h-screen overflow-hidden flex flex-col">
     <div
       id="disable-page"
-      class="
-        h-full
-        w-full
-        top-20
-        absolute
-        z-10
-        bg-black
-        transition
-        opacity-30
-        hidden
-      "
+      class="h-full w-full absolute z-10 bg-black transition opacity-30 hidden"
     ></div>
-    <header class="px-6 py-4 flex justify-between bg-white">
-      <div class="flex z-30">
+    <header class="px-6 py-3 md:py-4 flex justify-between bg-white z-30">
+      <div class="flex z-40">
         <!-- menu toggle -->
         <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
-          <div class="w-6 h-1 bg-black rounded mb-1"></div>
-          <div class="w-6 h-1 bg-black rounded mb-1"></div>
-          <div class="w-6 h-1 bg-black rounded"></div>
+          <img src="../static/images/menu-toggler.svg" alt="" class="w-7" />
         </div>
 
         <!-- logo -->
@@ -47,9 +35,9 @@
           <img
             src="../static/images/logo-icon.svg"
             alt="Logo"
-            class="w-12 mr-2"
+            class="w-10 md:w-12 mr-2"
           />
-          <div class="text-2xl font-bold">Education</div>
+          <div class="text-xl md:text-2xl font-bold">Education</div>
         </a>
       </div>
 
@@ -69,7 +57,7 @@
           absolute
           top-0
           left-0
-          w-1/3
+          w-2/5
           min-w-max
           h-screen
           bg-white
@@ -79,7 +67,7 @@
           transition
         "
       >
-        <ul class="flex md:flex-row md:mt-0 flex-col items-center">
+        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
           <li class="md:mr-14 md:mb-0 mb-16">
             <a href="#" class="active-link">Home</a>
           </li>
@@ -99,35 +87,42 @@
           self-center
           flex
           items-center
-          border-2 border-red-500
+          md:border-2
+          border-red-500
           rounded-sm
           cursor-pointer
           p-2
         "
       >
-        <div
-          class="
-            mr-2
-            w-7
-            h-7
-            rounded-full
-            bg-red-500
-            text-white text-xl
-            grid
-            place-items-center
-          "
+        <img
+          src="../static/images/account-icon.svg"
+          alt=""
+          class="w-9 md:w-8 mr-0 md:mr-1"
+        />
+        <div class="text-red-500 font-bold uppercase hidden md:block"
+          >Sign In</div
         >
-          ?
-        </div>
-        <div class="text-red-500 font-bold uppercase">Sign In</div>
       </div>
     </header>
 
-    <main class="flex md:flex-col flex-col-reverse">
+    <main
+      class="
+        flex
+        md:flex-col
+        flex-col-reverse
+        justify-between
+        h-1/2
+        pt-14
+        md:pt-20
+      "
+    >
       <!-- time and greeting -->
-      <div class="grid place-items-center gap-1 md:mt-32 mt-40">
-        <div id="time" class="font-bold text-7xl"></div>
-        <div class="text-2xl font-normal">
+      <div class="grid place-items-center gap-1">
+        <div
+          id="time"
+          class="font-medium md:font-bold text-6xl md:text-7xl"
+        ></div>
+        <div class="text-xl md:text-2xl font-normal">
           Good <span id="greeting"></span>,
           <span
             id="user-name"
@@ -140,7 +135,7 @@
       </div>
 
       <!-- search -->
-      <form class="flex justify-center md:mt-24 mt-10" autocomplete="off">
+      <form class="flex justify-center px-10" autocomplete="off">
         <input
           type="text"
           id="search-bar"
@@ -148,7 +143,8 @@
           class="
             rounded-full
             border-2 border-red-500
-            w-80
+            w-96
+            max-w-full
             px-5
             py-2
             outline-none
@@ -170,9 +166,11 @@
         id="quote"
         class="
           font-mono
-          text-lg text-center
+          text-base
+          md:text-lg
+          text-center
           transform
-          translate-y-8
+          hoverable:translate-y-8
           hover:translate-y-0
           transition
           w-4/5
@@ -180,7 +178,6 @@
           pb-2
         "
       >
-        <!-- <p id="author" class="font-sans text-gray-500 mt-2"></p> -->
       </blockquote>
     </div>
 
