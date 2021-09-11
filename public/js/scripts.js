@@ -15,6 +15,7 @@ b.onblur = () => {
   document.getElementById("search-bar").classList.toggle("translate-x-12");
   document.getElementById("search-bar").classList.add("w-0");
 };
+//
 c.onclick = () => {
   document.getElementById("video-description").classList.remove("hidden");
   document.getElementById("readMore").classList.remove("hidden");
