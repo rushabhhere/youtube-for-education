@@ -1,2 +1,5 @@
 # Dependencies
 /node_modules
+
+# Tailwind config reference
+full-tailwind.config.js

@@ -1,8 +1,8 @@
 module.exports = {
   // mode: 'jit',
   purge: [
-    // './public/*.html',
-    // './public/js/*.js',
+    // './public/**/*.html',
+    // './public/**/*.js',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -10,7 +10,7 @@ module.exports = {
     fontFamily: {
       'sans': ['Roboto'],
       'mono': ['Roboto Mono'],
-    }
+    },
   },
   variants: {
     extend: {},
