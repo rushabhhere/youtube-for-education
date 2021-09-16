@@ -5,3 +5,7 @@
 .active-link {
   @apply border-b-4 pb-1 border-red-600;
 }
+
+.active-tab {
+  @apply bg-red-500 text-white;
+}
