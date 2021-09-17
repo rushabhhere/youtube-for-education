@@ -74,17 +74,13 @@ const quote = document.getElementById('quote');
 
 async function setQuoteAndAuthor() {
   try {
-    const response = await fetch(
-      'https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json',
-    );
+    const response = await fetch('https://type.fit/api/quotes');
 
-    const result = await response.json();
-
-    const { quotes } = result;
+    const quotes = await response.json();
 
     currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-    quote.innerHTML = `"${currentQuote.quote}" <p id="author" class="font-sans text-gray-500 mt-2">${currentQuote.author}</p>`;
+    quote.innerHTML = `"${currentQuote.text}" <p id="author" class="font-sans text-gray-500 mt-2">${currentQuote.author}</p>`;
   } catch (err) {
     console.warn(err);
   }
