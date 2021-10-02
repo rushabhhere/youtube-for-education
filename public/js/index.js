@@ -78,7 +78,6 @@ async function setQuoteAndAuthor() {
     try {
       const response = await fetch('https://type.fit/api/quotes');
       result = await response.json();
-      console.log(result);
       sessionStorage.setItem('ytedu-quotes', JSON.stringify(result));
     } catch (err) {
       console.warn(err);

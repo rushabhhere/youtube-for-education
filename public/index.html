@@ -40,13 +40,13 @@
       <div class="flex z-40">
         <!-- menu toggle -->
         <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
-          <img src="../static/images/menu-toggler.svg" alt="" class="w-6" />
+          <img src="./static/images/menu-toggler.svg" alt="" class="w-6" />
         </div>
 
         <!-- logo -->
-        <a href="#" class="flex items-center">
+        <a href="/" class="flex items-center">
           <img
-            src="../static/images/logo-icon.svg"
+            src="./static/images/logo-icon.svg"
             alt="Logo"
             class="w-10 md:w-12 mr-2"
           />
@@ -82,7 +82,7 @@
       >
         <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
           <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="#" class="active-link">Home</a>
+            <a href="/" class="active-link">Home</a>
           </li>
           <li class="md:mr-14 md:mb-0 mb-16">
             <a href="#" class="hover:text-gray-600 transition">Library</a>
@@ -108,7 +108,7 @@
         "
       >
         <img
-          src="../static/images/account-icon.svg"
+          src="./static/images/account-icon.svg"
           alt=""
           class="w-9 md:w-8 mr-0 md:mr-1"
         />
@@ -149,14 +149,16 @@
 
       <!-- search -->
       <form
+        id="search-form"
         class="flex justify-center px-10"
         autocomplete="off"
-        action="./search.html"
+        action="/search"
         method="GET"
       >
         <input
           type="text"
           id="search-bar"
+          name="query"
           placeholder="Search..."
           class="
             rounded-full
@@ -170,7 +172,7 @@
         />
         <button type="submit">
           <img
-            src="../static/images/search-icon.svg"
+            src="./static/images/search-icon.svg"
             alt="Search"
             class="h-11 ml-5"
           />
@@ -200,6 +202,7 @@
     </div>
 
     <!-- linking js -->
+    <script src="./js/handle-search.js"></script>
     <script src="./js/navigation.js"></script>
     <script src="./js/index.js"></script>
   </body>
