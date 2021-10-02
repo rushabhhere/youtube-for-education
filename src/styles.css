@@ -9,3 +9,7 @@
 .active-tab {
   @apply bg-red-500 text-white;
 }
+
+#author {
+  @apply font-sans text-gray-500 mt-2;
+}

@@ -73,17 +73,22 @@ loadEnteredName();
 const quote = document.getElementById('quote');
 
 async function setQuoteAndAuthor() {
-  try {
-    const response = await fetch('https://type.fit/api/quotes');
-
-    const quotes = await response.json();
-
-    currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
-
-    quote.innerHTML = `"${currentQuote.text}" <p id="author" class="font-sans text-gray-500 mt-2">${currentQuote.author}</p>`;
-  } catch (err) {
-    console.warn(err);
+  // caching quotes if not already cached
+  if (!sessionStorage.getItem('ytedu-quotes')) {
+    try {
+      const response = await fetch('https://type.fit/api/quotes');
+      result = await response.json();
+      console.log(result);
+      sessionStorage.setItem('ytedu-quotes', JSON.stringify(result));
+    } catch (err) {
+      console.warn(err);
+    }
   }
+
+  // setting new quote
+  const quotes = JSON.parse(sessionStorage.getItem('ytedu-quotes'));
+  currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
+  quote.innerHTML = `"${currentQuote.text}" <p id="author">${currentQuote.author}</p>`;
 }
 
 setQuoteAndAuthor();
