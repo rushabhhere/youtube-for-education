@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YouTube Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../static/images/logo-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="bg-gray-200 flex flex-col">
+    <!--
+      TODO:
+      * Make the page disabler span entire page, regardless of scroll position
+      * Make the search-bar and result-type-toggler sticky
+    -->
+
+    <div
+      id="disable-page"
+      class="h-full w-full absolute z-10 bg-black transition opacity-30 hidden"
+    ></div>
+    <header
+      class="
+        sticky
+        top-0
+        left-0
+        px-6
+        py-3
+        md:py-4
+        flex
+        justify-between
+        bg-white
+        z-30
+      "
+    >
+      <div class="flex z-40">
+        <!-- menu toggle -->
+        <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
+          <img src="../static/images/menu-toggler.svg" alt="" class="w-6" />
+        </div>
+
+        <!-- logo -->
+        <a href="/" class="flex items-center">
+          <img
+            src="../static/images/logo-icon.svg"
+            alt="Logo"
+            class="w-10 md:w-12 mr-2"
+          />
+          <div class="text-xl md:text-2xl font-bold">Education</div>
+        </a>
+      </div>
+
+      <!-- nav -->
+      <nav
+        id="main-nav"
+        class="
+          md:self-center
+          md:static
+          md:h-auto
+          md:w-auto
+          md:bg-transparent
+          md:transform-none
+          md:transition-none
+          grid
+          items-center
+          absolute
+          top-0
+          left-0
+          w-2/5
+          min-w-max
+          h-screen
+          bg-white
+          z-20
+          transform
+          -translate-x-full
+          transition
+        "
+      >
+        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
+          <li class="md:mr-14 md:mb-0 mb-16">
+            <a href="/" class="hover:text-gray-600 transition">Home</a>
+          </li>
+          <li class="md:mr-14 md:mb-0 mb-16">
+            <a href="#" class="hover:text-gray-600 transition">Library</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-600 transition">About</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- profile -->
+      <div
+        id="profile"
+        class="
+          self-center
+          flex
+          items-center
+          md:border-2
+          border-red-500
+          rounded-sm
+          cursor-pointer
+          p-2
+        "
+      >
+        <img
+          src="../static/images/account-icon.svg"
+          alt=""
+          class="w-9 md:w-8 mr-0 md:mr-1"
+        />
+        <div class="text-red-500 font-bold uppercase hidden md:block"
+          >Sign In</div
+        >
+      </div>
+    </header>
+
+    <main class="my-10">
+      <!-- search -->
+      <form
+        id="search-form"
+        class="flex justify-center px-10"
+        autocomplete="off"
+        method="GET"
+        action="/search"
+      >
+        <input
+          type="text"
+          name="query"
+          id="search-bar"
+          placeholder="Search..."
+          class="
+            rounded-full
+            border-2 border-red-500
+            w-96
+            max-w-full
+            px-5
+            py-2
+            outline-none
+          "
+          value="<%= query %>"
+        />
+        <button type="submit">
+          <img
+            src="../static/images/search-icon.svg"
+            alt="Search"
+            class="h-11 ml-5"
+          />
+        </button>
+      </form>
+
+      <!-- tab toggler -->
+      <div class="flex justify-center gap-0 mt-8">
+        <button
+          id="videos"
+          class="
+            text-sm
+            py-1
+            px-7
+            border border-red-500
+            rounded-md rounded-r-none
+            cursor-pointer
+            transition
+            <% if (resultType === 'video') { %> active-tab <% } %>
+          "
+          >Videos</button
+        >
+        <button
+          id="playlists"
+          class="
+            text-sm
+            py-1
+            px-7
+            border border-l-0 border-red-500
+            rounded-md rounded-l-none
+            cursor-pointer
+            transiton
+            <% if (resultType === 'playlist') { %> active-tab <% } %>
+          "
+          >Playlists</button
+        >
+      </div>
+
+      <!-- results -->
+      <div id="results" class="lg:w-4/5 px-6 mt-16 mx-auto flex flex-col gap-6">
+        <% if (results.items.length !== 0) { %>
+          <% results.items.forEach(item => { %>
+          
+          <% videoUrl = `https://youtube.com/watch?v=${item.id.videoId}`; %>
+          <% videoDetails = item.snippet; %>
+
+          <a class="flex" href="<%= videoUrl %>" target="_blank">
+            <%# thumbnail %>
+            <picture class="mr-4">
+              <source
+                media="(min-width: 1000px)"
+                srcset="<%= videoDetails.thumbnails.high.url %>"
+              />
+              <source
+                media="(min-width: 600px)"
+                srcset="<%= videoDetails.thumbnails.medium.url %>"
+              />
+              <img
+                src="<%= videoDetails.thumbnails.default.url %>"
+                alt="thumbnail"
+              />
+            </picture>
+
+            <%# details %>
+            <div class="flex flex-col">
+              <%# title %>
+              <header class="font-medium text-xl">
+                <%= videoDetails.title %>
+              </header>
+
+              <%# upload date %>
+              <span id="upload-date" class="text-xs">
+                <% uploaded = duration.between(videoDetails.publishTime, now) %>
+                
+                <% if (uploaded.years > 0) { %>
+                  <%= uploaded.years %> <%- uploaded.years > 1 ? 'years' : 'year' %> ago
+                <% } else if (uploaded.months > 0) { %>
+                  <%= uploaded.months %> <%- uploaded.months > 1 ? 'months' : 'month' %> ago
+                <% } else if (uploaded.weeks > 0) { %>
+                  <%= uploaded.weeks %> <%- uploaded.weeks > 1 ? 'weeks' : 'week' %> ago
+                <% } else if (uploaded.days > 0) { %>
+                  <%= uploaded.days %> <%- uploaded.days > 1 ? 'days' : 'day' %> ago
+                <% } else if (uploaded.hours > 0) { %>
+                  <%= uploaded.hours %> <%- uploaded.hours > 1 ? 'hours' : 'hour' %> ago
+                <% } else if (uploaded.minutes > 30) { %>
+                  Less than an hour ago
+                <% } else if (uploaded.minutes > 0) { %>
+                  <%= uploaded.minutes %> minutes ago
+                <% } else { %>
+                  Just now
+                <% } %>
+              </span>
+
+              <%# description %>
+              <div class="mt-4 text-sm hidden md:block">
+                <%= videoDetails.description %>
+              </div>
+
+              <%# channel name %>
+              <div class="mt-auto"> <%= videoDetails.channelTitle %> </div>
+            </div>
+          </a>
+
+          <% }) %>
+        
+        <% } else { %>
+
+          <p>No videos found!</p>
+
+        <% } %>
+
+        <!-- <div class="flex">
+          <div class="mr-4">
+            <img src="https://unsplash.it/240/135" alt="thumbnail" />
+          </div>
+
+          <div class="flex flex-col">
+            <header class="font-medium text-xl"
+              >Fringilla nec viverra sem arcu</header
+            >
+
+            <div class="flex items-center mt-1">
+              <span id="view-count" class="text-xs mr-2">100K views</span>
+              <div> &bull; </div>
+              <span id="upload-date" class="text-xs ml-2">1 year ago</span>
+            </div>
+
+            <div class="mt-4 text-sm">
+              Vitae, ut enim, neque, non convallis. Nulla ut augue sit ornare
+              placerat.
+            </div>
+
+            <div class="mt-auto">Traversy Media</div>
+          </div>
+        </div> -->
+      </div>
+    </main>
+
+    <!-- footer -->
+    <footer class="bg-gray-700 text-white px-6 pt-10 pb-8">
+      <div class="lg:w-4/5 mx-auto">
+        <h2 class="font-bold text-xl">YouTube for Education</h2>
+
+        <div class="flex justify-between items-start my-5">
+          <!-- quick links -->
+          <div>
+            <h3 class="font-medium mb-3">Quick Links</h3>
+            <ul class="text-gray-300">
+              <li class="text-sm mb-1"><a href="./index.html">Home</a></li>
+              <li class="text-sm mb-1"><a href="#">Library</a></li>
+              <li class="text-sm"><a href="#">About</a></li>
+            </ul>
+          </div>
+
+          <!-- made with ❤️ -->
+          <div>
+            Made with ❤️ by
+            <a href="https://github.com/rushabhhere">Rushabh</a>,
+            <a href="https://github.com/Om-Kamath">Om</a>
+            and
+            <a href="https://github.com/VarunNair03">Varun</a>
+          </div>
+
+          <!-- source code -->
+          <div class="flex items-center p-2 bg-red-600 rounded-sm">
+            <span class="text-sm">Source Code</span>
+            <img
+              src="../static/icons/github.svg"
+              alt="GitHub"
+              class="w-6 ml-3"
+            />
+          </div>
+        </div>
+
+        <!-- note -->
+        <div class="flex justify-end">
+          <div class="text-sm text-gray-300">
+            Note: This is not an official Google product but a prototype of what
+            should be one.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- linking js -->
+    <script src="./js/handle-search.js"></script>
+    <script src="./js/navigation.js"></script>
+    <script src="./js/search.js"></script>
+  </body>
+</html>
