@@ -9,6 +9,6 @@ router.get('/', index_page);
 
 router.get('/search', search_page);
 
-router.get('/video', video_page);
+router.get('/watch', video_page);
 
 module.exports = router;
