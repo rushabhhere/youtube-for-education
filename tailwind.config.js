@@ -20,6 +20,7 @@ module.exports = {
       hoverable: { raw: '(hover: hover)' },
     },
   },
+
   variants: {
     extend: {},
   },
