@@ -170,7 +170,7 @@
             rounded-md rounded-r-none
             cursor-pointer
             transition
-            active-tab
+            <% if (resultType === 'video') { %> active-tab <% } %>
           "
           >Videos</button
         >
@@ -184,6 +184,7 @@
             rounded-md rounded-l-none
             cursor-pointer
             transiton
+            <% if (resultType === 'playlist') { %> active-tab <% } %>
           "
           >Playlists</button
         >
@@ -191,14 +192,15 @@
 
       <!-- results -->
       <div id="results" class="lg:w-4/5 px-6 mt-16 mx-auto flex flex-col gap-6">
-        <% results.items.forEach(item => { %> <% videoUrl =
-        `https://youtube.com/watch?v=${item.id.videoId}`; %> <% videoDetails =
-        item.snippet; %>
+        <% if (results.items.length !== 0) { %>
+          <% results.items.forEach(item => { %>
+          
+          <% videoUrl = `https://youtube.com/watch?v=${item.id.videoId}`; %>
+          <% videoDetails = item.snippet; %>
 
-        <a class="flex" href="<%= videoUrl %>" target="_blank">
-          <%# thumbnail %>
-          <div class="mr-4">
-            <picture>
+          <a class="flex" href="<%= videoUrl %>" target="_blank">
+            <%# thumbnail %>
+            <picture class="mr-4">
               <source
                 media="(min-width: 1000px)"
                 srcset="<%= videoDetails.thumbnails.high.url %>"
@@ -212,35 +214,54 @@
                 alt="thumbnail"
               />
             </picture>
-          </div>
 
-          <%# details %>
-          <div class="flex flex-col">
-            <%# title %>
-            <header class="font-medium text-xl">
-              <%= videoDetails.title %>
-            </header>
+            <%# details %>
+            <div class="flex flex-col">
+              <%# title %>
+              <header class="font-medium text-xl">
+                <%= videoDetails.title %>
+              </header>
 
-            <%# the numbers %>
-            <div class="flex items-center mt-1">
-              <span id="view-count" class="text-xs mr-2">100K views</span>
-              <div> &bull; </div>
-              <span id="upload-date" class="text-xs ml-2">
-                <%= videoDetails.publishTime %>
+              <%# upload date %>
+              <span id="upload-date" class="text-xs">
+                <% uploaded = duration.between(videoDetails.publishTime, now) %>
+                
+                <% if (uploaded.years > 0) { %>
+                  <%= uploaded.years %> <%- uploaded.years > 1 ? 'years' : 'year' %> ago
+                <% } else if (uploaded.months > 0) { %>
+                  <%= uploaded.months %> <%- uploaded.months > 1 ? 'months' : 'month' %> ago
+                <% } else if (uploaded.weeks > 0) { %>
+                  <%= uploaded.weeks %> <%- uploaded.weeks > 1 ? 'weeks' : 'week' %> ago
+                <% } else if (uploaded.days > 0) { %>
+                  <%= uploaded.days %> <%- uploaded.days > 1 ? 'days' : 'day' %> ago
+                <% } else if (uploaded.hours > 0) { %>
+                  <%= uploaded.hours %> <%- uploaded.hours > 1 ? 'hours' : 'hour' %> ago
+                <% } else if (uploaded.minutes > 30) { %>
+                  Less than an hour ago
+                <% } else if (uploaded.minutes > 0) { %>
+                  <%= uploaded.minutes %> minutes ago
+                <% } else { %>
+                  Just now
+                <% } %>
               </span>
+
+              <%# description %>
+              <div class="mt-4 text-sm hidden md:block">
+                <%= videoDetails.description %>
+              </div>
+
+              <%# channel name %>
+              <div class="mt-auto"> <%= videoDetails.channelTitle %> </div>
             </div>
+          </a>
 
-            <%# description %>
-            <div class="mt-4 text-sm hidden md:block">
-              <%= videoDetails.description %>
-            </div>
+          <% }) %>
+        
+        <% } else { %>
 
-            <%# channel name %>
-            <div class="mt-auto"> <%= videoDetails.channelTitle %> </div>
-          </div>
-        </a>
+          <p>No videos found!</p>
 
-        <% }) %>
+        <% } %>
 
         <!-- <div class="flex">
           <div class="mr-4">
