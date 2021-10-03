@@ -1,11 +1,28 @@
 module.exports = {
-  purge: [],
+  // mode: 'jit',
+  purge: [
+    // './public/**/*.html',
+    // './public/**/*.js',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
+    fontFamily: {
+      sans: ['Roboto'],
+      mono: ['Roboto Mono'],
+    },
+    screens: {
+      sm: '500px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+      hoverable: { raw: '(hover: hover)' },
+    },
   },
+
   variants: {
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [require('@tailwindcss/aspect-ratio')],
+};

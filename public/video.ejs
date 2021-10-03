@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= video.snippet.title %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./assets/images/icons/logo-icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="flex flex-col w-screen h-screen bg-gray-100 overflow-x-hidden">
+    <div
+      id="disable-page"
+      class="h-full w-full absolute z-10 bg-black transition opacity-30 hidden"
+    ></div>
+    <header
+      class="
+        sticky
+        top-0
+        left-0
+        px-6
+        py-3
+        md:py-4
+        flex
+        justify-between
+        bg-white
+        z-30
+      "
+    >
+      <div class="flex z-40">
+        <!-- menu toggle -->
+        <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
+          <img src="./assets/images/icons/menu-toggler.svg" alt="" class="w-6" />
+        </div>
+
+        <!-- logo -->
+        <a href="/" class="flex items-center">
+          <img
+            src="./assets/images/icons/logo-icon.svg"
+            alt="Logo"
+            class="w-10 md:w-12 mr-2"
+          />
+          <div class="text-xl md:text-2xl font-bold">Education</div>
+        </a>
+      </div>
+
+      <!-- nav -->
+      <nav
+        id="main-nav"
+        class="
+          md:self-center
+          md:static
+          md:h-auto
+          md:w-auto
+          md:bg-transparent
+          md:transform-none
+          md:transition-none
+          grid
+          items-center
+          absolute
+          top-0
+          left-0
+          w-2/5
+          min-w-max
+          h-screen
+          bg-white
+          z-20
+          transform
+          -translate-x-full
+          transition
+        "
+      >
+        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
+          <li class="md:mr-14 md:mb-0 mb-16">
+            <a href="/" class="hover:text-gray-600 transition">Home</a>
+          </li>
+          <li class="md:mr-14 md:mb-0 mb-16">
+            <a href="#" class="hover:text-gray-600 transition">Library</a>
+          </li>
+          <li>
+            <a href="/about" class="hover:text-gray-600 transition">About</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- profile -->
+      <div
+        id="profile"
+        class="
+          self-center
+          flex
+          items-center
+          md:border-2
+          border-red-500
+          rounded-sm
+          cursor-pointer
+          p-2
+        "
+      >
+        <img
+          src="./assets/images/icons/account-icon.svg"
+          alt=""
+          class="w-9 md:w-8 mr-0 md:mr-1"
+        />
+        <div class="text-red-500 font-bold uppercase hidden md:block"
+          >Sign In</div
+        >
+      </div>
+    </header>
+
+    <main class="flex flex-col w-screen h-screen bg-gray-100 items-center">
+      <div class="w-screen flex flex-row justify-end px-4 mt-4">
+        <input
+          type="text"
+          name="search"
+          id="search-bar"
+          placeholder="Search"
+          autocomplete="off"
+          class="
+            bg-transparent
+            border-b-2
+            transform
+            translate-x-12
+            h-10
+            placeholder-gray-600
+            mr-4
+            p-3
+            w-0
+            transition
+            duration-200
+            ease-in
+            focus:outline-none
+          "
+        />
+        <button id="search-btn" class="transition duration-300 ease-in z-10">
+          <img src="./assets/images/icons/search-icon.svg" />
+        </button>
+      </div>
+      <div class="flex justify-center h-full w-4/5 md:w-3/5">
+        <div class="flex flex-col h-full w-full mt-3 md:mt-1 xl:mt-0">
+          <div class="flex justify-center aspect-w-16 aspect-h-9">
+            <div class="container">
+              <iframe
+                src="https://www.youtube.com/embed/<%= video.id %>"
+                width="924"
+                height="520"
+                allowfullscreen
+                class="rounded responsive-iframe"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="mt-5 flex flex-col w-full">
+            <p class="capitalize flex font-medium text-2xl">
+              <%= video.snippet.title %>
+            </p>
+            <div
+              class="
+                flex
+                md:flex-row
+                items-start
+                justify-between
+                sm:flex-col sm:items-start
+                md:items-center
+                flex-col
+                md:justify-between
+                font-normal
+                py-2
+              "
+            >
+              <div class="flex">
+                <p class="font-normal" id="view-count">
+                  <%= video.statistics.viewCount %> views
+                </p>
+                <p class="mx-1"> &bull; </p>
+                <p class="font-normal" id="publish-date">
+                  <% date = new Date(video.snippet.publishedAt) %>
+                  <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ] %>
+                  <%= date.getDate() %> <%= monthNames[date.getMonth()] %>, <%= date.getFullYear() %>
+                </p>
+              </div>
+              <div class="flex pb-3 mt-3 sm:mt-3">
+                <a href="" class="flex">
+                  <img src="./assets/images/icons/like-icon.svg" alt="likes" />
+                  <p class="mx-3" id="like-count">80K</p>
+                </a>
+                <a href="" class="flex">
+                  <img src="./assets/images/icons/dislike-icon.svg" alt="likes" />
+                  <p class="mx-2 ml-2" id="dislike-count">120</p>
+                </a>
+
+                <a class="flex mx-1">
+                  <img
+                    src="./assets/images/icons/watch-later-icon.svg"
+                    alt="watch later"
+                    class="mx-1"
+                  />
+                  Watch Later
+                </a>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="mt-1 flex flex-col px-1 py-2 h-screen">
+              <div class="flex justify-center mt-2 select-none">
+                <div class="cursor-pointer w-auto rounded-lg">
+                  <a
+                    id="description"
+                    class="
+                      bg-red-500
+                      text-white
+                      p-2
+                      rounded-l-lg
+                      border-2 border-red-500
+                      transform
+                      translate-
+                    "
+                  >
+                    Description
+                  </a>
+                  <a
+                    id="notes"
+                    class="
+                      bg-white
+                      p-2
+                      rounded-r-lg
+                      border-t-2 border-r-2 border-b-2 border-red-500
+                    "
+                  >
+                    Notes
+                  </a>
+                </div>
+              </div>
+              <div class="mt-5">
+                <div
+                  class="
+                    flex flex-col-reverse
+                    md:flex-row
+                    sm:flex-col-reverse
+                    w-full
+                    h-auto
+                  "
+                  id=""
+                >
+                  <div class="md:w-3/4 sm:">
+                    <!-- do not add any other ids to the div given below -->
+                    <div class="h-20" id="video-description-readmore">
+                        <% for (const line of video.snippet.description.split("\n")) { %>
+                          <p
+                            id="video-description"
+                            class="text-justify line-clamp-1"
+                          ><%= line %>
+                          </p>
+                        <% } %>
+                    </div>
+
+                    <button
+                      type="button"
+                      class="
+                        font-medium
+                        text-gray-500
+                        p-1
+                        -ml-3
+                        rounded-xl
+                        w-28
+                      "
+                      id="readMore"
+                      value="Read More"
+                    >
+                      Read More
+                    </button>
+                  </div>
+
+                  <!-- Subscribe Button -->
+                  <div
+                    class="
+                      border-b-2 border-gray-200
+                      md:w-1/4 md:px-12
+                      py-2
+                      h-full
+                      sm:border-b-2 sm:border-gray-200
+                      md:border-none
+                    "
+                    id="video-description-google"
+                  >
+                    <script src="https://apis.google.com/js/platform.js"></script>
+
+                    <div
+                      id="youtube-subscribe-btn"
+                      class="g-ytsubscribe"
+                      data-channelid="<%= video.snippet.channelId %>"
+                      data-layout="full"
+                      data-count="default"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <div class="hidden" id="video-notes">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque
+                enim ratione facilis tempore aliquid quas error assumenda est ad
+                sed?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- linking js -->
+    <script src="./js/navigation.js"></script>
+    <script src="./js/video.js"></script>
+  </body>
+</html>
