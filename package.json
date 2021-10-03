@@ -21,7 +21,6 @@
     "tailwindcss": "^2.2.8"
   },
   "dependencies": {
-    "@pixleight/tailwindcss-aspect-ratio": "^1.0.0",
-    "@tailwindcss/aspect-ratio": "^0.2.1"
+    "@pixleight/tailwindcss-aspect-ratio": "^1.0.0"
   }
 }

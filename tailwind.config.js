@@ -7,8 +7,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    require("@tailwindcss/aspect-ratio"),
-    require("@pixleight/tailwindcss-aspect-ratio"),
-  ],
+  plugins: [],
 };
