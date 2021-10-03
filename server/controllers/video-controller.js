@@ -16,7 +16,7 @@ const video_page = (request, response) => {
       .then(res => res.json())
       .then(results => {
         response.render('video', {
-          result: results.items[0],
+          video: results.items[0],
           type,
         });
       })

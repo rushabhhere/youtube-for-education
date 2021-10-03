@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Video Title</title>
+    <title><%= video.snippet.title %></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -151,7 +151,7 @@
           <div class="flex justify-center aspect-w-16 aspect-h-9">
             <div class="container">
               <iframe
-                src="https://www.youtube.com/embed/<%= result.id %>"
+                src="https://www.youtube.com/embed/<%= video.id %>"
                 width="924"
                 height="520"
                 allowfullscreen
@@ -162,7 +162,7 @@
 
           <div class="mt-5 flex flex-col w-full">
             <p class="capitalize flex font-medium text-2xl">
-              TypeScript Crash Course 2021
+              <%= video.snippet.title %>
             </p>
             <div
               class="
@@ -179,9 +179,15 @@
               "
             >
               <div class="flex">
-                <p class="font-normal" id="view-count">Current Views</p>
-                <p class="mx-3">&bull;</p>
-                <p class="font-normal" id="publish-date">Publish Date</p>
+                <p class="font-normal" id="view-count">
+                  <%= video.statistics.viewCount %> views
+                </p>
+                <p class="mx-1"> &bull; </p>
+                <p class="font-normal" id="publish-date">
+                  <% date = new Date(video.snippet.publishedAt) %>
+                  <% const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ] %>
+                  <%= date.getDate() %> <%= monthNames[date.getMonth()] %>, <%= date.getFullYear() %>
+                </p>
               </div>
               <div class="flex pb-3 mt-3 sm:mt-3">
                 <a href="" class="flex">
@@ -249,32 +255,13 @@
                   <div class="md:w-3/4 sm:">
                     <!-- do not add any other ids to the div given below -->
                     <div class="h-20" id="video-description-readmore">
-                      <p
-                        id="video-description"
-                        class="text-justify line-clamp-1"
-                      >
-                        hello how are you <br />
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        A quidem laudantium dignissimos molestiae adipisci.
-                        Facilis dicta, dolores ducimus eaque totam, temporibus
-                        maxime accusantium suscipit adipisci magni placeat
-                        corrupti tenetur fugit. Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Ea inventore incidunt,
-                        accusantium quidem odit modi necessitatibus rerum
-                        laborum omnis delectus, voluptate voluptatibus
-                        consectetur debitis officia reprehenderit adipisci
-                        consequuntur quasi alias. Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit. Pariatur consequatur
-                        accusamus, doloremque delectus molestiae a dolore rerum
-                        omnis placeat alias! Ea sed tempora dicta nisi
-                        accusantium porro aut eveniet laboriosam esse et modi in
-                        magni eum quaerat saepe commodi quas enim, eius
-                        doloremque. Nesciunt ducimus maxime adipisci autem
-                        tempora nobis laudantium quos distinctio libero fuga?
-                        Laborum, repellendus perspiciatis aliquam quaerat
-                        dignissimos architecto earum fugiat, praesentium minus
-                        ipsam porro, repudiandae saepe?
-                      </p>
+                        <% for (const line of video.snippet.description.split("\n")) { %>
+                          <p
+                            id="video-description"
+                            class="text-justify line-clamp-1"
+                          ><%= line %>
+                          </p>
+                        <% } %>
                     </div>
 
                     <button
@@ -294,6 +281,7 @@
                     </button>
                   </div>
 
+                  <!-- Subscribe Button -->
                   <div
                     class="
                       border-b-2 border-gray-200
@@ -310,7 +298,7 @@
                     <div
                       id="youtube-subscribe-btn"
                       class="g-ytsubscribe"
-                      data-channel="GoogleDevelopers"
+                      data-channelid="<%= video.snippet.channelId %>"
                       data-layout="full"
                       data-count="default"
                     ></div>
