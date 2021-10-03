@@ -87,7 +87,9 @@ async function setQuoteAndAuthor() {
   // setting new quote
   const quotes = JSON.parse(sessionStorage.getItem('ytedu-quotes'));
   currentQuote = quotes[Math.floor(Math.random() * quotes.length)];
-  quote.innerHTML = `"${currentQuote.text}" <p id="author">${currentQuote.author}</p>`;
+  quote.innerHTML = `"${currentQuote.text}" <p id="author">${
+    currentQuote.author === null ? 'Unknown' : currentQuote.author
+  }</p>`;
 }
 
 setQuoteAndAuthor();
