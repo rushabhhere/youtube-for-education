@@ -195,10 +195,10 @@
         <% if (results.items.length !== 0) { %>
           <% results.items.forEach(item => { %>
           
-          <% videoUrl = `https://youtube.com/watch?v=${item.id.videoId}`; %>
+          <% videoUrl = `http://localhost:4321/watch?id=${item.id.videoId}&type=video`; %>
           <% videoDetails = item.snippet; %>
 
-          <a class="flex" href="<%= videoUrl %>" target="_blank">
+          <a class="flex" href="<%= videoUrl %>">
             <%# thumbnail %>
             <picture class="mr-4">
               <source
