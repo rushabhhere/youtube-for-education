@@ -18,7 +18,7 @@
     <link rel="icon" href="./assets/images/icons/logo-icon.svg" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="bg-gray-200 flex flex-col">
+  <body class="bg-gray-200 flex flex-col relative">
     <!--
       TODO:
       * Make the page disabler span entire page, regardless of scroll position
@@ -27,8 +27,9 @@
 
     <div
       id="disable-page"
-      class="h-full w-full absolute z-10 bg-black transition opacity-30 hidden"
+      class="top-0 bottom-0 w-full absolute z-10 bg-black transition opacity-30 hidden"
     ></div>
+
     <header
       class="
         sticky
@@ -165,11 +166,12 @@
           class="
             text-sm
             py-1
-            px-7
+            w-32
             border border-red-500
             rounded-md rounded-r-none
             cursor-pointer
             transition
+            bg-white
             <% if (resultType === 'video') { %> active-tab <% } %>
           "
           >Videos</button
@@ -179,11 +181,12 @@
           class="
             text-sm
             py-1
-            px-7
+            w-32
             border border-l-0 border-red-500
             rounded-md rounded-l-none
             cursor-pointer
             transiton
+            bg-white
             <% if (resultType === 'playlist') { %> active-tab <% } %>
           "
           >Playlists</button
@@ -195,7 +198,7 @@
         <% if (results.items.length !== 0) { %>
           <% results.items.forEach(item => { %>
           
-          <% videoUrl = `http://localhost:4321/watch?id=${item.id.videoId}&type=video`; %>
+          <% videoUrl = `/watch?id=${item.id.videoId}&type=video`; %>
           <% videoDetails = item.snippet; %>
 
           <a class="flex" href="<%= videoUrl %>">
@@ -219,7 +222,7 @@
             <div class="flex flex-col">
               <%# title %>
               <header class="font-medium text-xl">
-                <%= videoDetails.title %>
+                <%- videoDetails.title %>
               </header>
 
               <%# upload date %>
@@ -247,7 +250,7 @@
 
               <%# description %>
               <div class="mt-4 text-sm hidden md:block">
-                <%= videoDetails.description %>
+                <%- videoDetails.description %>
               </div>
 
               <%# channel name %>
@@ -300,9 +303,9 @@
           <div>
             <h3 class="font-medium mb-3">Quick Links</h3>
             <ul class="text-gray-300">
-              <li class="text-sm mb-1"><a href="./index.html">Home</a></li>
+              <li class="text-sm mb-1"><a href="/">Home</a></li>
               <li class="text-sm mb-1"><a href="#">Library</a></li>
-              <li class="text-sm"><a href="#">About</a></li>
+              <li class="text-sm"><a href="/about">About</a></li>
             </ul>
           </div>
 
@@ -316,14 +319,14 @@
           </div>
 
           <!-- source code -->
-          <div class="flex items-center p-2 bg-red-600 rounded-sm">
+          <a href="https://github.com/rushabhhere/youtube-for-education" target="_blank" class="flex items-center p-2 bg-red-600 rounded-sm">
             <span class="text-sm">Source Code</span>
             <img
               src="./assets/images/icons/github.svg"
               alt="GitHub"
               class="w-6 ml-3"
             />
-          </div>
+          </a>
         </div>
 
         <!-- note -->

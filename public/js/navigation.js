@@ -5,17 +5,20 @@ const disablePage = document.getElementById('disable-page');
 
 toggler.addEventListener('click', toggleNav);
 disablePage.addEventListener('click', toggleNav);
-window.addEventListener('resize', () => {
-  if (!mainNav.classList.contains('-translate-x-full')) {
-    mainNav.classList.add('-translate-x-full');
-  }
 
-  if (!disablePage.classList.contains('hidden')) {
+window.addEventListener('resize', () => {
+  if (
+    !mainNav.classList.contains('-translate-x-full') &&
+    !disablePage.classList.contains('hidden')
+  ) {
+    mainNav.classList.add('-translate-x-full');
     disablePage.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
   }
 });
 
 function toggleNav() {
   mainNav.classList.toggle('-translate-x-full');
   disablePage.classList.toggle('hidden');
+  document.body.classList.toggle('overflow-hidden');
 }
