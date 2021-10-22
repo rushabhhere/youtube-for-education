@@ -19,21 +19,6 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="flex flex-col bg-gray-100 relative">
-    <div
-      id="disable-page"
-      class="
-        top-0
-        bottom-0
-        w-full
-        absolute
-        z-10
-        bg-black
-        transition
-        opacity-30
-        hidden
-      "
-    ></div>
-
     <header
       class="
         sticky
@@ -49,15 +34,6 @@
       "
     >
       <div class="flex z-40">
-        <!-- menu toggle -->
-        <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
-          <img
-            src="./assets/images/icons/menu-toggler.svg"
-            alt=""
-            class="w-6"
-          />
-        </div>
-
         <!-- logo -->
         <a href="/" class="flex items-center">
           <img
@@ -68,45 +44,6 @@
           <div class="text-xl md:text-2xl font-bold">Education</div>
         </a>
       </div>
-
-      <!-- nav -->
-      <nav
-        id="main-nav"
-        class="
-          md:self-center
-          md:static
-          md:h-auto
-          md:w-auto
-          md:bg-transparent
-          md:transform-none
-          md:transition-none
-          grid
-          items-center
-          absolute
-          top-0
-          left-0
-          w-2/5
-          min-w-max
-          h-screen
-          bg-white
-          z-20
-          transform
-          -translate-x-full
-          transition
-        "
-      >
-        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="/" class="hover:text-gray-600 transition">Home</a>
-          </li>
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="#" class="hover:text-gray-600 transition">Library</a>
-          </li>
-          <li>
-            <a href="/about" class="hover:text-gray-600 transition">About</a>
-          </li>
-        </ul>
-      </nav>
 
       <!-- profile -->
       <div
@@ -176,6 +113,8 @@
               <iframe
                 src="https://www.youtube.com/embed/<%= video.id %>"
                 allowfullscreen
+                  width="924"
+                  height="520"
                 class="responsive-iframe"
               ></iframe>
             </div>
@@ -201,7 +140,7 @@
             >
               <div class="flex">
                 <p class="font-normal" id="view-count">
-                  <%= video.statistics.viewCount %> views
+                  21,851,881 views
                 </p>
                 <p class="mx-1"> &bull; </p>
                 <p class="font-normal" id="publish-date">
@@ -219,7 +158,7 @@
                     alt="likes"
                     class="w-5"
                   />
-                  <p>80K</p>
+                  <p>661K</p>
                 </div>
 
                 <!-- dislike -->
@@ -229,17 +168,7 @@
                     alt=""
                     class="w-5"
                   />
-                  <p>120</p>
-                </div>
-
-                <!-- watch later -->
-                <div class="flex cursor-pointer gap-1">
-                  <img
-                    src="./assets/images/icons/watch-later-icon.svg"
-                    alt=""
-                    class="w-5"
-                  />
-                  <p class="uppercase">Watch Later</p>
+                  <p>5.1K</p>
                 </div>
               </div>
             </div>
