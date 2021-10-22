@@ -148,18 +148,16 @@
 
           <a class="flex gap-4" href="<%= videoUrl %>">
             <%# thumbnail %>
-            <div class="block w-80">
-              <img
-                src="<%= videoDetails.thumbnails.medium.url %>"
-                alt="thumbnail"
-                class="w-full h-auto"
-              />
-            </div>
+            <img
+              src="<%= videoDetails.thumbnails.medium.url %>"
+              alt="thumbnail"
+              class="lg:w-80 md:w-72 w-56 h-auto"
+            />
 
             <%# details %>
             <div class="flex flex-col">
               <%# title %>
-              <header class="font-medium text-xl">
+              <header class="font-medium md:text-xl text-lg leading-6">
                 <%- videoDetails.title %>
               </header>
 
