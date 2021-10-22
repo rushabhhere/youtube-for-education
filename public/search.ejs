@@ -19,17 +19,6 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="bg-gray-200 flex flex-col relative">
-    <!--
-      TODO:
-      * Make the page disabler span entire page, regardless of scroll position
-      * Make the search-bar and result-type-toggler sticky
-    -->
-
-    <div
-      id="disable-page"
-      class="top-0 bottom-0 w-full absolute z-10 bg-black transition opacity-30 hidden"
-    ></div>
-
     <header
       class="
         sticky
@@ -45,11 +34,6 @@
       "
     >
       <div class="flex z-40">
-        <!-- menu toggle -->
-        <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
-          <img src="./assets/images/icons/menu-toggler.svg" alt="" class="w-6" />
-        </div>
-
         <!-- logo -->
         <a href="/" class="flex items-center">
           <img
@@ -60,45 +44,6 @@
           <div class="text-xl md:text-2xl font-bold">Education</div>
         </a>
       </div>
-
-      <!-- nav -->
-      <nav
-        id="main-nav"
-        class="
-          md:self-center
-          md:static
-          md:h-auto
-          md:w-auto
-          md:bg-transparent
-          md:transform-none
-          md:transition-none
-          grid
-          items-center
-          absolute
-          top-0
-          left-0
-          w-2/5
-          min-w-max
-          h-screen
-          bg-white
-          z-20
-          transform
-          -translate-x-full
-          transition
-        "
-      >
-        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="/" class="hover:text-gray-600 transition">Home</a>
-          </li>
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="#" class="hover:text-gray-600 transition">Library</a>
-          </li>
-          <li>
-            <a href="/about" class="hover:text-gray-600 transition">About</a>
-          </li>
-        </ul>
-      </nav>
 
       <!-- profile -->
       <div
@@ -296,16 +241,33 @@
     <!-- footer -->
     <footer class="bg-gray-700 text-white px-6 pt-10 pb-8">
       <div class="lg:w-4/5 mx-auto">
-        <h2 class="font-bold text-xl">YouTube for Education</h2>
+        <h2 class="font-bold text-xl md:text-left text-center"
+          >YouTube for Education</h2
+        >
 
-        <div class="flex justify-between items-start my-5">
+        <div
+          class="
+            flex
+            md:flex-row
+            flex-col
+            justify-between
+            gap-10
+            md:items-start
+            items-center
+            md:my-5
+            my-10
+          "
+        >
           <!-- quick links -->
           <div>
             <h3 class="font-medium mb-3">Quick Links</h3>
             <ul class="text-gray-300">
-              <li class="text-sm mb-1"><a href="/">Home</a></li>
-              <li class="text-sm mb-1"><a href="#">Library</a></li>
-              <li class="text-sm"><a href="/about">About</a></li>
+              <li class="text-sm mb-1 md:text-left text-center"
+                ><a href="/">Home</a></li
+              >
+              <li class="text- md:text-left text-center"
+                ><a href="/about">About</a></li
+              >
             </ul>
           </div>
 
@@ -319,7 +281,11 @@
           </div>
 
           <!-- source code -->
-          <a href="https://github.com/rushabhhere/youtube-for-education" target="_blank" class="flex items-center p-2 bg-red-600 rounded-sm">
+          <a
+            href="https://github.com/rushabhhere/youtube-for-education"
+            target="_blank"
+            class="flex items-center p-2 bg-red-600 rounded-sm"
+          >
             <span class="text-sm">Source Code</span>
             <img
               src="./assets/images/icons/github.svg"
@@ -330,8 +296,8 @@
         </div>
 
         <!-- note -->
-        <div class="flex justify-end">
-          <div class="text-sm text-gray-300">
+        <div class="flex md:justify-end justify-center">
+          <div class="text-sm text-gray-300 md:text-left text-center">
             Note: This is not an official Google product but a prototype of what
             should be one.
           </div>
@@ -341,7 +307,6 @@
 
     <!-- linking js -->
     <script src="./js/handle-search.js"></script>
-    <script src="./js/navigation.js"></script>
     <script src="./js/search.js"></script>
   </body>
 </html>
