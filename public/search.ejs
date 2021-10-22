@@ -143,89 +143,119 @@
         <% if (results.items.length !== 0) { %>
           <% results.items.forEach(item => { %>
           
-          <% videoUrl = `/watch?id=${item.id.videoId}&type=video`; %>
-          <% videoDetails = item.snippet; %>
+            <% if (resultType === 'video') { %>
 
-          <a class="flex gap-4" href="<%= videoUrl %>">
-            <%# thumbnail %>
-            <img
-              src="<%= videoDetails.thumbnails.medium.url %>"
-              alt="thumbnail"
-              class="lg:w-80 md:w-72 w-56 h-auto"
-            />
+              <% videoUrl = `/watch?id=${item.id.videoId}&type=video`; %>
+              <% videoDetails = item.snippet; %>
 
-            <%# details %>
-            <div class="flex flex-col">
-              <%# title %>
-              <header class="font-medium md:text-xl text-lg leading-6">
-                <%- videoDetails.title %>
-              </header>
+              <a class="flex gap-4" href="<%= videoUrl %>">
+                <%# thumbnail %>
+                <img
+                  src="<%= videoDetails.thumbnails.medium.url %>"
+                  alt="thumbnail"
+                  class="lg:w-80 md:w-72 w-56 h-auto"
+                />
+    
+                <%# details %>
+                <div class="flex flex-col">
+                  <%# title %>
+                  <header class="font-medium md:text-xl text-lg leading-6">
+                    <%- videoDetails.title %>
+                  </header>
+    
+                  <%# upload date %>
+                  <span id="upload-date" class="text-xs">
+                    <% uploaded = duration.between(videoDetails.publishTime, now) %>
+                    
+                    <% if (uploaded.years > 0) { %>
+                      <%= uploaded.years %> <%- uploaded.years > 1 ? 'years' : 'year' %> ago
+                    <% } else if (uploaded.months > 0) { %>
+                      <%= uploaded.months %> <%- uploaded.months > 1 ? 'months' : 'month' %> ago
+                    <% } else if (uploaded.weeks > 0) { %>
+                      <%= uploaded.weeks %> <%- uploaded.weeks > 1 ? 'weeks' : 'week' %> ago
+                    <% } else if (uploaded.days > 0) { %>
+                      <%= uploaded.days %> <%- uploaded.days > 1 ? 'days' : 'day' %> ago
+                    <% } else if (uploaded.hours > 0) { %>
+                      <%= uploaded.hours %> <%- uploaded.hours > 1 ? 'hours' : 'hour' %> ago
+                    <% } else if (uploaded.minutes > 30) { %>
+                      Less than an hour ago
+                    <% } else if (uploaded.minutes > 0) { %>
+                      <%= uploaded.minutes %> minutes ago
+                    <% } else { %>
+                      Just now
+                    <% } %>
+                  </span>
+    
+                  <%# description %>
+                  <div class="mt-4 text-sm hidden md:block">
+                    <%- videoDetails.description %>
+                  </div>
+    
+                  <%# channel name %>
+                  <div class="mt-auto"> <%= videoDetails.channelTitle %> </div>
+                </div>
+              </a>
 
-              <%# upload date %>
-              <span id="upload-date" class="text-xs">
-                <% uploaded = duration.between(videoDetails.publishTime, now) %>
-                
-                <% if (uploaded.years > 0) { %>
-                  <%= uploaded.years %> <%- uploaded.years > 1 ? 'years' : 'year' %> ago
-                <% } else if (uploaded.months > 0) { %>
-                  <%= uploaded.months %> <%- uploaded.months > 1 ? 'months' : 'month' %> ago
-                <% } else if (uploaded.weeks > 0) { %>
-                  <%= uploaded.weeks %> <%- uploaded.weeks > 1 ? 'weeks' : 'week' %> ago
-                <% } else if (uploaded.days > 0) { %>
-                  <%= uploaded.days %> <%- uploaded.days > 1 ? 'days' : 'day' %> ago
-                <% } else if (uploaded.hours > 0) { %>
-                  <%= uploaded.hours %> <%- uploaded.hours > 1 ? 'hours' : 'hour' %> ago
-                <% } else if (uploaded.minutes > 30) { %>
-                  Less than an hour ago
-                <% } else if (uploaded.minutes > 0) { %>
-                  <%= uploaded.minutes %> minutes ago
-                <% } else { %>
-                  Just now
-                <% } %>
-              </span>
+            <% } else if (resultType === 'playlist') { %>
 
-              <%# description %>
-              <div class="mt-4 text-sm hidden md:block">
-                <%- videoDetails.description %>
-              </div>
+              <% playlistUrl = `/watch?id=${item.id.playlistId}&type=playlist`; %>
+              <% playlistDetails = item.snippet; %>
 
-              <%# channel name %>
-              <div class="mt-auto"> <%= videoDetails.channelTitle %> </div>
-            </div>
-          </a>
-
+              <a class="flex gap-4" href="<%= playlistUrl %>">
+                <%# thumbnail %>
+                <img
+                  src="<%= playlistDetails.thumbnails.medium.url %>"
+                  alt="thumbnail"
+                  class="lg:w-80 md:w-72 w-56 h-auto"
+                />
+    
+                <%# details %>
+                <div class="flex flex-col">
+                  <%# title %>
+                  <header class="font-medium md:text-xl text-lg leading-6">
+                    <%- playlistDetails.title %>
+                  </header>
+    
+                  <%# upload date %>
+                  <span id="upload-date" class="text-xs">
+                    <% uploaded = duration.between(playlistDetails.publishedAt, now) %>
+                    
+                    <% if (uploaded.years > 0) { %>
+                      <%= uploaded.years %> <%- uploaded.years > 1 ? 'years' : 'year' %> ago
+                    <% } else if (uploaded.months > 0) { %>
+                      <%= uploaded.months %> <%- uploaded.months > 1 ? 'months' : 'month' %> ago
+                    <% } else if (uploaded.weeks > 0) { %>
+                      <%= uploaded.weeks %> <%- uploaded.weeks > 1 ? 'weeks' : 'week' %> ago
+                    <% } else if (uploaded.days > 0) { %>
+                      <%= uploaded.days %> <%- uploaded.days > 1 ? 'days' : 'day' %> ago
+                    <% } else if (uploaded.hours > 0) { %>
+                      <%= uploaded.hours %> <%- uploaded.hours > 1 ? 'hours' : 'hour' %> ago
+                    <% } else if (uploaded.minutes > 30) { %>
+                      Less than an hour ago
+                    <% } else if (uploaded.minutes > 0) { %>
+                      <%= uploaded.minutes %> minutes ago
+                    <% } else { %>
+                      Just now
+                    <% } %>
+                  </span>
+    
+                  <%# description %>
+                  <div class="mt-4 text-sm hidden md:block">
+                    <%- playlistDetails.description %>
+                  </div>
+    
+                  <%# channel name %>
+                  <div class="mt-auto"> <%= playlistDetails.channelTitle %> </div>
+                </div>
+              </a>
+              
+            <% } %>
           <% }) %>
-        
         <% } else { %>
 
-          <p>No videos found!</p>
+          <p>No results found!</p>
 
         <% } %>
-
-        <!-- <div class="flex">
-          <div class="mr-4">
-            <img src="https://unsplash.it/240/135" alt="thumbnail" />
-          </div>
-
-          <div class="flex flex-col">
-            <header class="font-medium text-xl"
-              >Fringilla nec viverra sem arcu</header
-            >
-
-            <div class="flex items-center mt-1">
-              <span id="view-count" class="text-xs mr-2">100K views</span>
-              <div> &bull; </div>
-              <span id="upload-date" class="text-xs ml-2">1 year ago</span>
-            </div>
-
-            <div class="mt-4 text-sm">
-              Vitae, ut enim, neque, non convallis. Nulla ut augue sit ornare
-              placerat.
-            </div>
-
-            <div class="mt-auto">Traversy Media</div>
-          </div>
-        </div> -->
       </div>
     </main>
 

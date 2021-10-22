@@ -16,20 +16,6 @@ const search_page = (request, response) => {
       resultType = 'playlist';
     }
 
-    // const cachedResults = JSON.parse(
-    //   fs.readFileSync(path.resolve('./server/cached-results.json'), 'utf-8'),
-    // );
-
-    // if (cachedResults) {
-    //   response.render('search', {
-    //     query,
-    //     results: cachedResults,
-    //     resultType,
-    //     duration,
-    //     now: new Date(),
-    //   });
-    // }
-
     const endpoint = 'https://youtube.googleapis.com/youtube/v3/search';
     const maxResults = 10;
     const topicId = '/m/01k8wb';
