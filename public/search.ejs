@@ -146,22 +146,15 @@
           <% videoUrl = `/watch?id=${item.id.videoId}&type=video`; %>
           <% videoDetails = item.snippet; %>
 
-          <a class="flex" href="<%= videoUrl %>">
+          <a class="flex gap-4" href="<%= videoUrl %>">
             <%# thumbnail %>
-            <picture class="mr-4">
-              <source
-                media="(min-width: 1000px)"
-                srcset="<%= videoDetails.thumbnails.high.url %>"
-              />
-              <source
-                media="(min-width: 600px)"
-                srcset="<%= videoDetails.thumbnails.medium.url %>"
-              />
+            <div class="block w-80">
               <img
-                src="<%= videoDetails.thumbnails.default.url %>"
+                src="<%= videoDetails.thumbnails.medium.url %>"
                 alt="thumbnail"
+                class="w-full h-auto"
               />
-            </picture>
+            </div>
 
             <%# details %>
             <div class="flex flex-col">
