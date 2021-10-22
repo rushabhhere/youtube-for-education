@@ -13,3 +13,7 @@
 #author {
   @apply font-sans text-gray-500 mt-2;
 }
+
+.responsive-iframe {
+  @apply absolute top-0 left-0 bottom-0 right-0 w-full h-full border-0;
+}

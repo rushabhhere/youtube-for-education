@@ -8,13 +8,13 @@ const video_page = (request, response) => {
     const endpoint = `https://youtube.googleapis.com/youtube/v3/${type}s`;
 
     const key = fs.readFileSync(path.resolve('./server/api-key.txt'), 'utf-8');
-    
+
     let part;
-    
+
     if (type === 'video') {
       part = 'snippet,statistics';
     } else {
-      part = 'snippet'
+      part = 'snippet';
     }
 
     const url = `${endpoint}?part=${part}&id=${id}&key=${key}`;
@@ -22,10 +22,20 @@ const video_page = (request, response) => {
     fetch(url)
       .then(res => res.json())
       .then(results => {
-        response.render('watch', {
-          result: results.items[0],
-          type,
-        });
+        if (type === 'playlist') {
+          response.render('watch', {
+            result: results.items[0],
+            type,
+          });
+        } else {
+          response.render('watch', {
+            result: results.items[0],
+            viewCount: parseInt(
+              results.items[0].statistics.viewCount
+            ).toLocaleString(),
+            type,
+          });
+        }
       })
       .catch(err => console.error(err));
   } else {

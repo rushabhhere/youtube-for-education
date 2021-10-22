@@ -109,25 +109,21 @@
         <div class="flex flex-col w-full mt-3 md:mt-1">
           <!-- embed -->
           <div class="flex justify-center aspect-w-16 aspect-h-9">
-            <div class="container">
-              <iframe
-                <% if (type === 'video') { %>
-                  src="https://www.youtube.com/embed/<%= result.id %>"
-                <% } else if (type === 'playlist') { %>
-                  src="https://www.youtube.com/embed/videoseries?list=<%= result.id %>"
-                <% } %>
-                allowfullscreen
-                  width="924"
-                  height="520"
-                class="responsive-iframe"
-              ></iframe>
-            </div>
+            <iframe
+              <% if (type === 'video') { %>
+                src="https://www.youtube.com/embed/<%= result.id %>"
+              <% } else if (type === 'playlist') { %>
+                src="https://www.youtube.com/embed/videoseries?list=<%= result.id %>"
+              <% } %>
+              allowfullscreen
+              class="responsive-iframe"
+            ></iframe>
           </div>
 
           <!-- details -->
           <div class="mt-5 flex flex-col">
             <!-- title -->
-            <p class="font-medium text-2xl"> <%= result.snippet.title %> </p>
+            <p class="font-medium text-2xl leading-7"> <%= result.snippet.title %> </p>
 
             <!-- stats -->
             <div
@@ -142,37 +138,18 @@
                 mt-3
               "
             >
-              <div class="flex">
-                <p class="font-normal" id="view-count">
-                  21,851,881 views
-                </p>
-                <p class="mx-1"> &bull; </p>
-                <p class="font-normal" id="publish-date">
-                  <% date = new Date(result.snippet.publishedAt) %>
-                  <% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ] %>
-                  <%= date.getDate() %> <%= monthNames[date.getMonth()] %>, <%= date.getFullYear() %>
-                </p>
-              </div>
-
-              <div class="flex gap-5">
-                <!-- like -->
-                <div class="flex cursor-pointer gap-1">
-                  <img
-                    src="./assets/images/icons/like-icon.svg"
-                    alt="likes"
-                    class="w-5"
-                  />
-                  <p>661K</p>
-                </div>
-
-                <!-- dislike -->
-                <div class="flex cursor-pointer gap-1">
-                  <img
-                    src="./assets/images/icons/dislike-icon.svg"
-                    alt=""
-                    class="w-5"
-                  />
-                  <p>5.1K</p>
+                <div class="flex">
+                  <% if (type === 'video') { %>
+                      <p class="font-normal" id="view-count">
+                        <%= viewCount %> views
+                      </p>
+                      <p class="mx-1"> &bull; </p>
+                  <% } %>
+                  <p class="font-normal" id="publish-date">
+                    <% date = new Date(result.snippet.publishedAt) %>
+                    <% const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec" ] %>
+                    <%= date.getDate() %> <%= monthNames[date.getMonth()] %>, <%= date.getFullYear() %>
+                  </p>
                 </div>
               </div>
             </div>
@@ -264,8 +241,9 @@
               </section>
 
               <!-- notes section -->
-              <section id="notes-section" class="flex flex-wrap gap-6">
-                <div class="h-auto w-64">
+              <section id="notes-section" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+                <!-- note template -->
+                <!-- <div class="h-auto">
                   <div class="bg-red-200 flex justify-end">
                     <button id="edit" class="p-2 outline-none">
                       <img src="./assets/images/icons/edit.svg" alt="Edit" class="w-5" />
@@ -284,49 +262,7 @@
                           p-3" 
                     placeholder="Enter your note..."
                   ></textarea>
-                </div>
-
-                <div class="h-auto w-64">
-                  <div class="bg-red-200 flex justify-end">
-                    <button id="edit" class="p-2 outline-none">
-                      <img src="./assets/images/icons/edit.svg" alt="Edit" class="w-5" />
-                    </button>
-                    <button id="delete" class="p-2 outline-none">
-                      <img src="./assets/images/icons/trash.svg" alt="Delete" class="w-5" />
-                    </button>
-                  </div>
-              
-                  <textarea 
-                    id="note-input" 
-                    class="w-full 
-                          outline-none 
-                          resize-none 
-                          h-72 
-                          p-3" 
-                    placeholder="Enter your note..."
-                  ></textarea>
-                </div>
-
-                <div class="h-auto w-64">
-                  <div class="bg-red-200 flex justify-end">
-                    <button id="edit" class="p-2 outline-none">
-                      <img src="./assets/images/icons/edit.svg" alt="Edit" class="w-5" />
-                    </button>
-                    <button id="delete" class="p-2 outline-none">
-                      <img src="./assets/images/icons/trash.svg" alt="Delete" class="w-5" />
-                    </button>
-                  </div>
-              
-                  <textarea 
-                    id="note-input" 
-                    class="w-full 
-                          outline-none 
-                          resize-none 
-                          h-72 
-                          p-3" 
-                    placeholder="Enter your note..."
-                  ></textarea>
-                </div>
+                </div> -->
               </section>
 
             </div>
@@ -335,18 +271,36 @@
       </div>
     </main>
 
+    <!-- footer -->
     <footer class="bg-gray-700 text-white px-6 pt-10 pb-8">
       <div class="lg:w-4/5 mx-auto">
-        <h2 class="font-bold text-xl">YouTube for Education</h2>
+        <h2 class="font-bold text-xl md:text-left text-center"
+          >YouTube for Education</h2
+        >
 
-        <div class="flex justify-between items-start my-5">
+        <div
+          class="
+            flex
+            md:flex-row
+            flex-col
+            justify-between
+            gap-10
+            md:items-start
+            items-center
+            md:my-5
+            my-10
+          "
+        >
           <!-- quick links -->
           <div>
             <h3 class="font-medium mb-3">Quick Links</h3>
             <ul class="text-gray-300">
-              <li class="text-sm mb-1"><a href="/">Home</a></li>
-              <li class="text-sm mb-1"><a href="#">Library</a></li>
-              <li class="text-sm"><a href="/about">About</a></li>
+              <li class="text-sm mb-1 md:text-left text-center"
+                ><a href="/">Home</a></li
+              >
+              <li class="text- md:text-left text-center"
+                ><a href="/about">About</a></li
+              >
             </ul>
           </div>
 
@@ -375,8 +329,8 @@
         </div>
 
         <!-- note -->
-        <div class="flex justify-end">
-          <div class="text-sm text-gray-300">
+        <div class="flex md:justify-end justify-center">
+          <div class="text-sm text-gray-300 md:text-left text-center">
             Note: This is not an official Google product but a prototype of what
             should be one.
           </div>
