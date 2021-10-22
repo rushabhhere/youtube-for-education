@@ -19,10 +19,6 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="bg-gray-200 h-screen overflow-hidden flex flex-col">
-    <div
-      id="disable-page"
-      class="h-full w-full absolute z-10 bg-black transition opacity-30 hidden"
-    ></div>
     <header
       class="
         sticky
@@ -38,15 +34,6 @@
       "
     >
       <div class="flex z-40">
-        <!-- menu toggle -->
-        <div id="toggler" class="self-center mr-4 cursor-pointer md:hidden">
-          <img
-            src="./assets/images/icons/menu-toggler.svg"
-            alt=""
-            class="w-6"
-          />
-        </div>
-
         <!-- logo -->
         <a href="/" class="flex items-center">
           <img
@@ -57,45 +44,6 @@
           <div class="text-xl md:text-2xl font-bold">Education</div>
         </a>
       </div>
-
-      <!-- nav -->
-      <nav
-        id="main-nav"
-        class="
-          md:self-center
-          md:static
-          md:h-auto
-          md:w-auto
-          md:bg-transparent
-          md:transform-none
-          md:transition-none
-          grid
-          items-center
-          absolute
-          top-0
-          left-0
-          w-2/5
-          min-w-max
-          h-screen
-          bg-white
-          z-20
-          transform
-          -translate-x-full
-          transition
-        "
-      >
-        <ul class="flex md:flex-row md:mt-0 flex-col items-center px-8">
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="/" class="active-link">Home</a>
-          </li>
-          <li class="md:mr-14 md:mb-0 mb-16">
-            <a href="#" class="hover:text-gray-600 transition">Library</a>
-          </li>
-          <li>
-            <a href="/about" class="hover:text-gray-600 transition">About</a>
-          </li>
-        </ul>
-      </nav>
 
       <!-- profile -->
       <div
@@ -207,7 +155,6 @@
 
     <!-- linking js -->
     <script src="./js/handle-search.js"></script>
-    <script src="./js/navigation.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
