@@ -3,6 +3,7 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
+  onAuthStateChanged,
 } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
 
 const profile = document.getElementById('profile');
@@ -25,8 +26,20 @@ profile.addEventListener('click', () => {
       console.log(result.user);
     })
     .catch(err => {
-      console.error('Error code:', err.code)
-      console.error('Error message:', err.message)
-      console.error('Error email:', err.email)
-    })
+      console.error('Error code:', err.code);
+      console.error('Error message:', err.message);
+      console.error('Error email:', err.email);
+    });
 });
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    showUserInfo(user);
+  } else {
+    logOut();
+  }
+});
+
+function showUserInfo(user) {
+  
+}
